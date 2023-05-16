@@ -5,7 +5,6 @@ import styles from './Header.module.scss'
 import SubMenus from './SubMenus';
 
 const GnbMenus = ({category, link, subMenu}) => {
-  console.log(subMenu);
   return (
     <li>
       <Link className={styles.gnb} to={link}>
@@ -13,7 +12,7 @@ const GnbMenus = ({category, link, subMenu}) => {
         <ul className={styles.lnb}>
           {
             subMenu.map(({id, menu}) => (
-              <SubMenus id={id} menu={menu}  />
+              <SubMenus key={id} menu={menu}  />
             ))
           }
         </ul>

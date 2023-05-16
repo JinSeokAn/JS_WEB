@@ -79,7 +79,7 @@ const Header = ({isMo}) => {
             </nav>
           
             <div className={styles.utilWrap}>
-            <ul className={styles.util}>
+              <ul className={styles.util}>
                 <NavUtils />
               </ul>
             </div>

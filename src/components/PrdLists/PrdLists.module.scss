@@ -1,16 +1,13 @@
 .prdWrap{
   width: 100%;
   .lists{
-    
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    gap: 15px 0;
     li{
-      margin-right: 15px;
-      width: clamp(200px, 25%, 350px);
-      &:last-child{
-        margin-right: 0;
-      }
+      width: clamp(180px, 23%, 350px);
       a{
         display: block;
         background-color: #666;
@@ -55,6 +52,11 @@
           .text{
             margin-top: 3px;
             color: #888;
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
           }
         }
       }

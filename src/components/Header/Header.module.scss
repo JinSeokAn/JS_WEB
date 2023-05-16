@@ -26,6 +26,7 @@ $--header-height : 60px;
         > li{
           position: relative;
           flex-shrink: 0;
+          width: calc(100% / 5);
           > a{
             display: block;
             width: 100%;

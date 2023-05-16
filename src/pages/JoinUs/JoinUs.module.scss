@@ -1,0 +1,64 @@
+
+
+.join{
+  .container{
+    margin: 0 auto;
+    max-width: 1480px;
+    h2{
+      margin: 100px 0 0;
+      font-weight: bold;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    .loginArea{
+      margin: 0 auto;
+      width: 50%;
+      .formBox{
+        padding: 50px 0 70px;
+        input{
+          margin-top: 5px;
+          padding: 12px 15px;
+          width: 100%;
+          display: block;
+          border-bottom: 1px solid #ddd;
+          &:last-child{
+            margin-top: 0;
+          }
+        }
+        .emailform{
+          display: flex;
+        }
+        .gender{
+          display: flex;
+          gap: 20px;
+          padding: 10px 15px;
+          width: 100%;
+          font-size: .9rem;
+        }
+        .address{
+          display: flex;
+          flex-shrink: 0;
+        }
+      }
+    }
+    .agreeWrap{
+      margin-top: 20px;
+      h3{
+        padding: 5px 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-bottom: 1px solid #000;
+      }
+      .agreeContent{
+        margin-top: 10px;
+        padding: 20px;
+        border: 1px solid #dfdfdf;
+      }
+    }
+    .btnWrap{
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+  }
+}

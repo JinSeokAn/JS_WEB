@@ -3,21 +3,22 @@ import { Link } from 'react-router-dom';
 
 import styles from './PrdLists.module.scss'
 
-const PrdLists = ({images}) => {
+const PrdLists = ({prdData, images}) => {
+  console.log(prdData);
   return (
     <div className={styles.prdWrap}>
       <ul className={styles.lists}>
-      { images.map(({id, imgURL})=>(
-         <li>
+      { prdData.map(({content, limitedTimeOffer, costPrice, image, kind, no, productName, profitPrice, salesPrice})=>(
+         <li key={no}>
           <Link to="">
-            <img src={require(`asset/${imgURL}`)} alt={`배너이미지 ${id}`} />
+            <img src={image} alt={`배너이미지 test`} />
           </Link>
           <div className={styles.details}>
-            <p className={styles.title}>블랙라벨 시그니처 380N 레깅스 1+1</p>
-            <p className={styles.price}>59,800 <span className={styles.before}>110,000</span></p>
+            <p className={styles.title}>{productName}</p>
+            <p className={styles.price}>{profitPrice} <span className={styles.before}>{salesPrice}</span></p>
             <div className={styles.desc}>
-              <span className={styles.event}>[5/9(화) 2PM까지 기간한정특가!]</span>
-              <p className={styles.text}>디스패치 선정 셀럽 선호 레깅스 1위!</p>
+              <span className={styles.event}>{limitedTimeOffer}</span>
+              <p className={styles.text}>{content}</p>
             </div>
           </div>
         </li>

@@ -1,11 +1,9 @@
-
-
 .login{
   .container{
     margin: 0 auto;
     max-width: 1480px;
     h2{
-      margin: 100px;
+      margin: 100px 0 0;
       font-weight: bold;
       font-size: 1.8rem;
       text-align: center;
@@ -13,30 +11,54 @@
     .loginArea{
       margin: 0 auto;
       width: 50%;
-      .basicLogin{
-        padding: 50px;
-        border: 1px solid #888;
-      }
-      .socialArea{
-        padding: 30px 50px;
-        margin-top: 10px;
-        border: 1px solid #888;
+      .formBox{
+        padding: 50px 20% 70px;
+        border-bottom: 1px solid #ddd;
+        &:last-child{
+          border-bottom: none;
+        }
+        input[type="text"], input[type="password"]{
+          margin-top: 10px;
+        }
+        .savedInfo{
+          margin-top: 10px;
+          font-size: .8rem;
+          color: #888;
+      
+        }
+        .btnLogin{
+          margin-top: 5px;
+          width: 100%;
+          padding: 10px 20px;
+          text-align: center;
+          border: 1px solid #ddd;
+        }
+        .btnWrap{
+          margin-top: 10px;
+        }
+        .joinfind{
+          display: flex;
+          justify-content: space-between;
+          margin-top: 5px;
+          a {
+            font-size: .8rem;
+            color: #888;
+          }
+        }
+
         h3{
           font-weight: bold;
-          font-size: 1rem;
+          font-size: 1.1rem;
           text-align: center;
         }
         ul.socialLogin{
-          margin-top: 10px;
+          margin-top: 20px;
           display: flex;
+          gap: 10px;
           li{
             width: 50%;
-            margin-right: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
-            &:last-child{
-              margin-right: 0;
-            }
             a{
               padding: 5px 0;
               display: block;
