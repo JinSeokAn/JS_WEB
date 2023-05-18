@@ -27,6 +27,15 @@
         }
         .emailform{
           display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+          > input{
+            width: 52%;
+          }
+          > select{
+            width:40%;
+          }
         }
         .gender{
           display: flex;
@@ -37,7 +46,10 @@
         }
         .address{
           display: flex;
-          flex-shrink: 0;
+          button{
+            flex-shrink: 0;
+            margin-left: 15px;
+          }
         }
       }
     }
