@@ -14,7 +14,7 @@
     &.error{
       color: #db2525;
     }
-}
+  }
   .chkBox{
     display: flex;
     align-items: center;
@@ -25,12 +25,49 @@
     }
   }
 
+  //address form
+  .zonecode{
+    input{
+      width: 32%;
+    }
+  }
+
+  //email form
+  .inputEmail{
+    width: 52%;
+  }
   .at{
     margin: 0 2%;
     display: inline-block;
   }
-  select{
+  .selectEmail{
+    width:40%;
     padding: 5px 10px;
     border: 1px solid #ddd !important;
     border-radius: 5px;
   }
+
+  @media all and (min-width:769px) and (max-width:1024px) {
+    //email form
+    .inputEmail{
+      width: 50%;
+    }
+    .at{
+      margin: 0 1%;
+    }
+    .selectEmail{
+      width:43%;
+    }
+  }
+@media all and (max-width:768px) {
+    //email form
+    .inputEmail{
+      width: 45%;
+    }
+    .at{
+      margin: 0;
+    }
+    .selectEmail{
+      width:45%;
+    }
+}

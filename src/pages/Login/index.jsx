@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './Login.module.scss'
 // import InsertTextForm from 'components/InputForm/InsertTextForm';
 import { Link } from 'react-router-dom';
 import InsertTextForm from 'components/InputForm/InsertTextForm';
 import CheckBox from 'components/InputForm/CheckBox';
 import Button from 'components/Button';
+import { login, logout, onUserStateChange } from 'api/firebase';
+import { ContextStore } from 'context/store';
 
 const Login = (props) => {
+  // const [user, setUser] = useState();
+  
+  const contextValue = useContext(ContextStore)
+
+  useEffect(() => {
+    onUserStateChange(user => contextValue.user[1](user))
+  },[])
+  
   return(
     <div className={styles.login}>
       <div className={styles.container}>
@@ -36,7 +46,8 @@ const Login = (props) => {
                   <Link to="">카카오 로그인</Link>
                 </li>
                 <li>
-                  <Link to="">카카오 로그인</Link>
+                  {!contextValue.user[0] && <Link to="" onClick={login}>구글 로그인</Link>}
+                  { contextValue.user[0] && <Link to="" onClick={logout}>구글 로그아웃</Link> }
                 </li>
               </ul>
             </div>

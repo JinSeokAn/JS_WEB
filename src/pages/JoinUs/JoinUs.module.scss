@@ -14,11 +14,10 @@
       margin: 0 auto;
       width: 50%;
       .formBox{
-        padding: 50px 0 70px;
+        padding: 50px 0 0;
         input{
           margin-top: 5px;
           padding: 12px 15px;
-          width: 100%;
           display: block;
           border-bottom: 1px solid #ddd;
           &:last-child{
@@ -30,12 +29,7 @@
           flex-wrap: wrap;
           justify-content: space-between;
           align-items: center;
-          > input{
-            width: 52%;
-          }
-          > select{
-            width:40%;
-          }
+
         }
         .gender{
           display: flex;
@@ -45,16 +39,19 @@
           font-size: .9rem;
         }
         .address{
-          display: flex;
+          input{
+            display: inline-block;
+          }
           button{
+            display: inline-block;
             flex-shrink: 0;
-            margin-left: 15px;
+            margin-left: 10px;
           }
         }
       }
     }
     .agreeWrap{
-      margin-top: 20px;
+      margin-top: 80px;
       h3{
         padding: 5px 0;
         font-size: 1.2rem;
@@ -71,6 +68,20 @@
       margin-top: 20px;
       display: flex;
       gap: 10px;
+    }
+  }
+}
+
+
+@media all and (max-width:768px) {
+  .join{
+    .container{
+      max-width: 100%;
+      .loginArea{
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 20px;
+      }
     }
   }
 }

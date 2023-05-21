@@ -1,0 +1,49 @@
+
+.termsCheckAll{
+  display: flex;
+  align-items: center;
+  label{
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: .93rem;
+  }
+}
+ul.termsList{
+  margin-top: 20px;
+  .termsBox{
+    margin-top: 10px;
+    .inputCheck{
+      display: flex;
+      align-items: center;
+      padding: 5px 0;
+      .required{
+        display: flex;
+        p.termsSubject{
+          padding-left: 8px;
+          font-weight: bold;
+          letter-spacing: -.8px;
+          font-size: .93rem;
+        }
+        .extra{
+          margin-left: 5px;
+          display: block;
+          font-size: .9rem;
+          &.option{
+            color: #4a5bd8;
+          }
+          &.necessary{
+            color: #c94444;
+          }
+        }
+      }
+    }
+    .termsContent{
+      padding: 12px 15px;
+      height: 85px;
+      font-size: .85rem;
+      line-height: 1.6;
+      overflow-y: scroll;
+      border: 1px solid #dfdfdf;
+    }
+  }
+}

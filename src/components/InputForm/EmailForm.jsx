@@ -35,9 +35,9 @@ const EmailForm = (props) => {
 
   return (
     <>
-      <input type="text" placeholder='이메일' onChange={onChangeUserMail} />
+      <input className={styles.inputEmail} type="text" placeholder='이메일' onChange={onChangeUserMail} />
       <span className={styles.at}>@</span>
-      <select name="" id="" onChange={onChangeEmailAddress}>
+      <select className={styles.selectEmail} name="" id="" onChange={onChangeEmailAddress}>
         <option value="">이메일 선택하세요</option>
         <option value="naver.com">naver.com</option>
         <option value="gmail.com">gmail.com</option>

@@ -92,10 +92,33 @@ $--header-height : 60px;
     }
     .utilWrap{
       .util{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         li{
-          margin-right: 10px;
+          position: relative;
+          padding: 0 10px;
+          &::after{
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 1px;
+            height: 70%;
+            background-color: #ddd;
+            transform: translateY(-50%);
+          }
+          &:last-child{
+            padding-right: 0;
+            &::after{
+              display: none;
+            }
+          }
           a, button{
             display: block;
+            font-size: .9rem;
+          }
+          svg{
             font-size: 1.1rem;
           }
           button{
@@ -105,64 +128,59 @@ $--header-height : 60px;
       }
     }
    
-  .moLnb{
-    position: absolute;
-    top: $--header-height + 1;
-    right: 0;
-    z-index: 2;
-    width: 100%;
-    background-color: #fff;
-    .util{
-      li{
-        width: 100%;
-        font-size: .8rem;
-        background-color: #ededed;
-        border-right: 1px solid #ddd;
-        &:last-child{
-          border-right: none;
-        }
-        a, button{
-          display: flex;
-          justify-content: center;
-          padding: 8px 0;
+    .moLnb{
+      position: absolute;
+      top: $--header-height + 1;
+      right: 0;
+      z-index: 2;
+      width: 100%;
+      background-color: #fff;
+      .util{
+        li{
           width: 100%;
-        }
-        svg{
-          display: block;
-          font-size: 1.1rem;
+          font-size: .8rem;
+          background-color: #ededed;
+          border-right: 1px solid #ddd;
+          &:last-child{
+            border-right: none;
+          }
+          a, button{
+            display: flex;
+            justify-content: center;
+            padding: 8px 0;
+            width: 100%;
+          }
+          svg{
+            display: block;
+            font-size: 1.1rem;
+          }
         }
       }
-    }
-    .moGnb{
-      li{
-        padding: 10px 20px;
-        width: 100%;
-        flex-shrink: 0;
-        border-bottom: 1px solid #ddd;
-        a{
-          display: block;
-          .lnb{
-            display: none;
+      .moGnb{
+        li{
+          padding: 10px 20px;
+          width: 100%;
+          flex-shrink: 0;
+          border-bottom: 1px solid #ddd;
+          a{
+            display: block;
+            .lnb{
+              display: none;
+            }
           }
         }
       }
     }
-  }
-  .dimmed{
-    position: absolute;
-    top: $--header-height;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    width: 100%;
-    height: calc(100vh - $--header-height);
-    background-color: #00000050;
-  }
-  ul.util{
-    display: flex;
-    justify-content: space-between;
-    
-  }
+    .dimmed{
+      position: absolute;
+      top: $--header-height;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      width: 100%;
+      height: calc(100vh - $--header-height);
+      background-color: #00000050;
+    }
   }
 }

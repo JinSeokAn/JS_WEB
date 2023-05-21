@@ -8,6 +8,7 @@ import NavUtils from 'components/NavUtils';
 import HambugerMenu from './HambugerMenu';
 
 const Header = ({isMo}) => {
+  
   const subNavbar = [
     {
       id: 1,
@@ -63,6 +64,13 @@ const Header = ({isMo}) => {
 
   const [ isMoGnb, setIsMoGnb ] = useState(false)
 
+  const openMoMenu = () => {
+    setIsMoGnb(!isMoGnb)
+  }
+  const onClose = () => {
+    setIsMoGnb(!isMoGnb)
+  }
+
   return(
     <header className={styles.header}>
       <div className={styles.container}>
@@ -86,7 +94,7 @@ const Header = ({isMo}) => {
           </>
         }
         { isMo &&
-          <HambugerMenu />
+          <HambugerMenu openMoMenu={openMoMenu} />
         }
         { isMo && isMoGnb &&
           <>
@@ -100,7 +108,7 @@ const Header = ({isMo}) => {
                 ))}
               </ul>
             </div>
-            <div className={styles.dimmed}></div>
+            <div className={styles.dimmed} onClick={onClose}></div>
           </>
         }
       </div>

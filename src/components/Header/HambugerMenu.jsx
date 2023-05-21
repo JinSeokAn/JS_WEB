@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Hambuger.module.scss'
 
-const HambugerMenu = () => {
+const HambugerMenu = ({openMoMenu}) => {
   return (
-    <button type='button' className={`${styles.hambuger}`}>
+    <button type='button' className={`${styles.hambuger}`} onClick={openMoMenu}>
       <span className={styles.hambugerBar}></span>
     </button>
   )

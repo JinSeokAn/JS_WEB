@@ -2,21 +2,20 @@ import React from 'react';
 import styles from './AddressPostcode.module.scss'
 import DaumPostcodeEmbed from 'react-daum-postcode';
 
-const AddressPostcode = ({isPopup, setIsPopup}) => {
+const AddressPostcode = ({isPopup, setIsPopup, setZoneCode, setAddress}) => {
   const handleComplete = (data) => {
-    let fullAddress = data.address;
+    console.log(data);
+    let fullAddress = data.address; //풀 주소
+    let zoneCode = data.zonecode; // 우편번호
     let extraAddress = '';
 
     if (data.addressType === 'R') {
-      if (data.bname !== '') {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== '') {
-        extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-      }
+      if (data.bname !== '') extraAddress += data.bname;
+      if (data.buildingName !== '')  extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
-
+    setZoneCode(zoneCode)
+    setAddress(fullAddress)
     console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
     setIsPopup(!isPopup)
   };
