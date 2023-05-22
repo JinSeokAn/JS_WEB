@@ -2,7 +2,7 @@ import Header from 'components/Header/Index';
 import './App.css';
 import React, { useEffect, useState } from "react";
 import { Outlet } from 'react-router-dom';
-// import Footer from 'components/Footer';
+import Footer from 'components/Footer';
 
 function App() {
   // const [msg, setMsg] = useState([]);
@@ -30,7 +30,7 @@ function App() {
     <div className="wrap">
       <Header isMo={isMo} />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

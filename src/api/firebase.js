@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
 
+// REACT_APP_FIREBASE_API_KEY=AIzaSyCsOALiRfG7-_mnNTGo0C6LdlEGPoQ5QfI
+// REACT_APP_FIREBASE_AUTH_DOMAIN=login-99bcf.firebaseapp.com
+// REACT_APP_FIREBASE_PROJECT_ID=login-99bcf
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -9,7 +12,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
-console.log(firebaseConfig);
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();

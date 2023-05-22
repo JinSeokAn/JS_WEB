@@ -11,12 +11,13 @@ const style = {
 }
 const User = () => {
   //useContext를 사용해서 Store를 등록해줍니다.
-  const UserInfo = useContext(ContextStore)
+  const contextValue = useContext(ContextStore)
+  console.log(contextValue);
   
     return (
         <div style={style.container}>
-            이름 : {UserInfo.name}<br />
-            나이 : {UserInfo.age}
+            이름 : {contextValue.user[0]}<br />
+            나이 : {contextValue.testInfo.name}
         </div>
     );
 }

@@ -7,6 +7,7 @@ import CheckBox from 'components/InputForm/CheckBox';
 import Button from 'components/Button';
 import { login, logout, onUserStateChange } from 'api/firebase';
 import { ContextStore } from 'context/store';
+import TextForm from 'components/InputForm/TextForm';
 
 const Login = (props) => {
   // const [user, setUser] = useState();
@@ -25,8 +26,8 @@ const Login = (props) => {
           <form>
             {/* 기본 로그인 */}
             <div className={styles.formBox}>
-              <InsertTextForm formType="userId" guideTxt={'아이디'} type={'text'} />
-              <InsertTextForm formType="pw" guideTxt={'비밀번호'} type={'password'} />
+              <TextForm formType="userId" guideTxt={'아이디'} type={'text'} />
+              <TextForm formType="pw" guideTxt={'비밀번호'} type={'password'} />
               <div className={styles.savedInfo}>
                 <CheckBox text={'아이디 저장'} />
               </div>

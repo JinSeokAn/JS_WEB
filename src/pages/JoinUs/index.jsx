@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import styles from './JoinUs.module.scss'
 import InsertTextForm from 'components/InputForm/InsertTextForm';
 import Button from 'components/Button';
-import CheckBox from 'components/InputForm/CheckBox';
 import AddressPostcode from 'components/AddressPostcode';
 import PasswordCheckForm from 'components/InputForm/PasswordCheckForm';
 import EmailForm from 'components/InputForm/EmailForm';
 import AddressForm from 'components/InputForm/AddressForm';
 import AgreeContents from 'components/AgreeContents';
+import RadioButton from 'components/InputForm/RadioButton';
 
 const JoinUs = (props) => {
   const [isPopup, setIsPopup] = useState(false)
   const [ address, setAddress ] = useState('')
   const [ zoneCode, setZoneCode ] = useState('')
+  const [ gender, setGender ] = useState('woman')
 
   const agreeData = [
     { id: "termsOfService",
@@ -38,6 +39,12 @@ const JoinUs = (props) => {
   const onSubmitHandler = () => {
   }
 
+  const onSelectGender = (e) => {
+    const currentValue = e.target.value
+    setGender(currentValue)
+    console.log(gender);
+  }
+
   return(
     <div className={styles.join}>
       <div className={styles.container}>
@@ -51,8 +58,12 @@ const JoinUs = (props) => {
               <InsertTextForm formType="userPhone" guideTxt={'01012345678'} type={'text'} />
               {/* 젠더 */}
               <div className={styles.gender}>
-                <CheckBox val={'check1'} text={'여자'} />
-                <CheckBox val={'check2'} text={'남자'} />
+                <RadioButton name="gender" value="woman" defaultChecked onSelectGender={onSelectGender}>
+                  여성
+                </RadioButton>
+                <RadioButton name="gender" value="man" onSelectGender={onSelectGender}>
+                  남성
+                </RadioButton>
               </div>
               {/* select box */}
               <div className={styles.emailform}>

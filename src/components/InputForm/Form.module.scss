@@ -47,6 +47,13 @@
     border-radius: 5px;
   }
 
+  .chkBoxWrap{
+    display: flex;
+    .text{
+      padding-left: 5px;
+    }
+  }
+
   @media all and (min-width:769px) and (max-width:1024px) {
     //email form
     .inputEmail{
