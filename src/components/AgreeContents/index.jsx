@@ -1,7 +1,7 @@
-import React, {  useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './AgreeContents.module.scss'
 
-const AgreeContents = ({agreeData}) => {
+const AgreeContents = ({agreeData, onSubmitHandler}) => {
   const [ checkAll, setCheckAll ] = useState(false); // 전체 동의확인 여부
   const [ isChecked, setIsChecked ] = useState({ 
     termsOfService: false,
@@ -16,6 +16,7 @@ const AgreeContents = ({agreeData}) => {
       privacyPolicy: checked,
       allowPromotions: checked
     }));
+    agreeNessesaryChecked()
   };
 
   const handleChecked = (e) => {
@@ -25,6 +26,16 @@ const AgreeContents = ({agreeData}) => {
     ));
   };
   
+  function agreeNessesaryChecked() {
+    const { termsOfService, privacyPolicy } = isChecked;
+    console.log(termsOfService);
+    if( termsOfService && privacyPolicy ) {
+    } else {
+      alert('필수 동의하기를 체크해주세요')
+    }
+   
+};
+
   const isAllChecked = Object.values(isChecked).every((value) => value);
 
   return (

@@ -11,7 +11,7 @@ import Avatar from 'components/Avatar';
 
 const NavUtils = ({isMo}) => {
   const contextValue = useContext(ContextStore)
-  console.log(contextValue.user[0]);
+  // console.log(contextValue.user[0]);
   return (
       <>
         { !isMo &&

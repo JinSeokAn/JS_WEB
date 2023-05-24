@@ -8,7 +8,6 @@ const AddressForm = ({isPopup, setIsPopup, address, zoneCode}) => {
   }
 
   const onChangeUserAddress = (e) => {
-    const target = e.target.value
   };
   
   return (

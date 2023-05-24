@@ -1,38 +1,101 @@
-import React, { useContext, useEffect } from 'react';
-import styles from './Login.module.scss'
-// import InsertTextForm from 'components/InputForm/InsertTextForm';
+import React, { useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import InsertTextForm from 'components/InputForm/InsertTextForm';
-import CheckBox from 'components/InputForm/CheckBox';
-import Button from 'components/Button';
+
 import { login, logout, onUserStateChange } from 'api/firebase';
 import { ContextStore } from 'context/store';
-import TextForm from 'components/InputForm/TextForm';
+import { uploadLoginInfo } from 'api/uploadLogInfo';
+
+import CheckBox from 'components/InputForm/CheckBox';
+import LoginInput from 'components/login/LoginInput';
+import LoginButton from 'components/Button/LoginButton';
+
+import styles from './Login.module.scss'
 
 const Login = (props) => {
-  // const [user, setUser] = useState();
-  
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const {
+    register,
+    // handleSubmit,
+  } = useForm();
+
   const contextValue = useContext(ContextStore)
 
   useEffect(() => {
-    onUserStateChange(user => contextValue.user[1](user))
-  },[])
-  
+    onUserStateChange( user => contextValue.user[1](user))
+    // setTestUser([
+    //   ...testUser, {
+    //     member_id : username,
+    //     password : password,
+    //     admin_yn : false,
+    //   },
+    // ])
+    // uploadLoginInfo(User)
+    if(contextValue.user[0]) {
+      const { email , uid } = contextValue.user[0]
+      const loginData = {
+        username: email,
+        password: uid
+      };
+      
+      uploadLoginInfo(loginData)
+    }
+    
+  },[contextValue])
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const loginData = {
+      username: username,
+      password: password
+    };
+    console.log(loginData);
+    uploadLoginInfo(loginData)
+  };
+
   return(
     <div className={styles.login}>
       <div className={styles.container}>
         <h2>로그인</h2>
         <div className={styles.loginArea}>
-          <form>
+          <form method="post" onSubmit={handleSubmit}>
             {/* 기본 로그인 */}
             <div className={styles.formBox}>
-              <TextForm formType="userId" guideTxt={'아이디'} type={'text'} />
-              <TextForm formType="pw" guideTxt={'비밀번호'} type={'password'} />
+              <LoginInput 
+                register={register('id', {
+                  required: '아이디를 입력해주세요.',
+                })}
+                type="text"
+                label="아이디"
+                htmlFor="id"
+                // errorMessage={errors?.id?.message}
+                onChange={handleUsernameChange}
+              />
+              <LoginInput
+                register={register('password', {
+                  required: '비밀번호를 입려해주세요.',
+                })}
+                type="password"
+                label="비밀번호"
+                htmlFor="password"
+                // errorMessage={errors?.password?.message}
+                onChange={handlePasswordChange}
+              />
               <div className={styles.savedInfo}>
                 <CheckBox text={'아이디 저장'} />
               </div>
              <div className={styles.btnWrap}>
-                <Button type={'button'} text={'로그인'} size={'btnL'} state={'success'} />
+              <LoginButton size={'btnL'} state={'success'} title="로그인" onSubmit={handleSubmit} />
              </div>
               <div className={styles.joinfind}>
                 <Link to="">아이디/비밀번호 찾기</Link>

@@ -97,3 +97,11 @@
     }
   }
 }
+
+@media (max-width:1024px) {
+  .footer{
+    .container{
+      flex-direction: column-reverse;
+    }
+  }
+}

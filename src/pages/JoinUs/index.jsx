@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './JoinUs.module.scss'
 import InsertTextForm from 'components/InputForm/InsertTextForm';
 import Button from 'components/Button';
@@ -8,9 +8,12 @@ import EmailForm from 'components/InputForm/EmailForm';
 import AddressForm from 'components/InputForm/AddressForm';
 import AgreeContents from 'components/AgreeContents';
 import RadioButton from 'components/InputForm/RadioButton';
+import { uploadNewMember } from 'api/uploaMemberInfo';
 
 const JoinUs = (props) => {
-  const [isPopup, setIsPopup] = useState(false)
+  const [user, setUser] = useState([])
+
+  const [ isPopup, setIsPopup ] = useState(false)
   const [ address, setAddress ] = useState('')
   const [ zoneCode, setZoneCode ] = useState('')
   const [ gender, setGender ] = useState('woman')
@@ -36,7 +39,21 @@ const JoinUs = (props) => {
     }
   ]
 
-  const onSubmitHandler = () => {
+  useEffect(() => {
+    uploadNewMember(user)
+   }, [user])
+
+
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    setUser([
+      ...user, {
+        member_id : address,
+        password : zoneCode,
+        admin_yn : zoneCode,
+      },
+    ])
   }
 
   const onSelectGender = (e) => {
@@ -45,12 +62,14 @@ const JoinUs = (props) => {
     console.log(gender);
   }
 
+
+
   return(
     <div className={styles.join}>
       <div className={styles.container}>
         <h2>회원가입</h2>
         <div className={styles.loginArea}>
-          <form onSubmit={onSubmitHandler}>
+          <form  method="post" onSubmit={onSubmitHandler}>
             <div className={styles.formBox}>
               <InsertTextForm formType="userId" guideTxt={'아이디'} type={'text'} />
               <PasswordCheckForm />
@@ -78,7 +97,7 @@ const JoinUs = (props) => {
             <div className={styles.agreeWrap}>
               <h3>전체 동의</h3>
               <div className={styles.agreeContent}>
-                <AgreeContents agreeData={agreeData} />
+                <AgreeContents agreeData={agreeData} onSubmitHandler={onSubmitHandler} />
               </div>
             </div>
 
