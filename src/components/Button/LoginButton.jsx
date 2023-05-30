@@ -1,9 +1,10 @@
 import styles from './Button.module.scss'
 
-const LoginButton = ({size, state, title }) => {
+const LoginButton = ({size, state, title, isValid }) => {
   return (
     <button
-      className={`${styles[size]} ${styles[state]}`}
+      disabled={!isValid}
+      className={ isValid ? `${styles[size]} ${styles[state]}` : `${styles[size]} ${styles.disabled}`}
     >
       {title}
     </button>

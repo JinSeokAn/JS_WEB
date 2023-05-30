@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { login, logout, onUserStateChange } from 'api/firebase';
 import { ContextStore } from 'context/store';
-import { uploadLoginInfo } from 'api/uploadLogInfo';
+import { checkMemberInfo } from 'api/checkMemberInfo';
 
 import CheckBox from 'components/InputForm/CheckBox';
 import LoginInput from 'components/login/LoginInput';
@@ -13,62 +13,52 @@ import LoginButton from 'components/Button/LoginButton';
 import styles from './Login.module.scss'
 
 const Login = (props) => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const test = {
+    "memberId": "mis",
+    "password": "23"
+  }
 
   const {
     register,
-    // handleSubmit,
+    handleSubmit,
+    formState: { errors, isValid },
   } = useForm();
 
-  const contextValue = useContext(ContextStore)
+  const onValid = (data) => {
+    console.info(data);
+  };
+  
+  const goForgotAccount = () => {
+    navigate('/forgot-account');
+  };
 
-  useEffect(() => {
-    onUserStateChange( user => contextValue.user[1](user))
-    // setTestUser([
-    //   ...testUser, {
-    //     member_id : username,
-    //     password : password,
-    //     admin_yn : false,
-    //   },
-    // ])
-    // uploadLoginInfo(User)
-    if(contextValue.user[0]) {
-      const { email , uid } = contextValue.user[0]
-      const loginData = {
-        username: email,
-        password: uid
-      };
-      
-      uploadLoginInfo(loginData)
-    }
+  const goJoinUs = () => {
+    navigate('/join-us');
+  };
+
+  const handleLoginValue = () => {
     
+  }
+  const contextValue = useContext(ContextStore)
+  useEffect(() => {
+    checkMemberInfo(test)
+    onUserStateChange( user => contextValue.user[1](user))
+    if(contextValue.user[0]) {
+  
+      checkMemberInfo(test)
+    }
   },[contextValue])
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const loginData = {
-      username: username,
-      password: password
-    };
-    console.log(loginData);
-    uploadLoginInfo(loginData)
-  };
 
   return(
     <div className={styles.login}>
       <div className={styles.container}>
         <h2>로그인</h2>
         <div className={styles.loginArea}>
-          <form method="post" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onValid)}>
             {/* 기본 로그인 */}
             <div className={styles.formBox}>
               <LoginInput 
@@ -78,8 +68,7 @@ const Login = (props) => {
                 type="text"
                 label="아이디"
                 htmlFor="id"
-                // errorMessage={errors?.id?.message}
-                onChange={handleUsernameChange}
+                errorMessage={errors?.id?.message}
               />
               <LoginInput
                 register={register('password', {
@@ -88,18 +77,17 @@ const Login = (props) => {
                 type="password"
                 label="비밀번호"
                 htmlFor="password"
-                // errorMessage={errors?.password?.message}
-                onChange={handlePasswordChange}
+                errorMessage={errors?.password?.message}
               />
               <div className={styles.savedInfo}>
                 <CheckBox text={'아이디 저장'} />
               </div>
              <div className={styles.btnWrap}>
-              <LoginButton size={'btnL'} state={'success'} title="로그인" onSubmit={handleSubmit} />
+              <LoginButton size={'btnL'} state={'success'} title="로그인" isValid={isValid} onClick={handleLoginValue} />
              </div>
               <div className={styles.joinfind}>
-                <Link to="">아이디/비밀번호 찾기</Link>
-                <Link to="/join-us">회원가입</Link>
+                <Link onClick={goForgotAccount}>아이디/비밀번호 찾기</Link>
+                <Link onClick={goJoinUs}>회원가입</Link>
               </div>
             </div>
             {/* SNS 인증로그인 */}

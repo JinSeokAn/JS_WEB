@@ -10,7 +10,6 @@ import SwiperComponent from 'components/SlideBanner';
 // import test from 'asset/images/banner_01.jpg'
 
 const Home = (props) => {
-
   const [ prdData, setPrdData ] = useState([])
 
   const bannerImages = [
@@ -41,7 +40,6 @@ const Home = (props) => {
   
    }, [])
 
-   console.log(prdData);
   return (
     <div className={styles.main}>
       <section className={styles.mainBanner}>

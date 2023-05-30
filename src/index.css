@@ -28,10 +28,18 @@ ol {
   list-style: none;
 }
 
+/*common*/
 .srOnly{
   display: block;
   width: 0;
   height: 0;
   font-size: 0;
   text-indent: -9999px;
+}
+
+.text-s-size{
+  font-size: .8rem;
+}
+.text-error{
+  color: red;
 }

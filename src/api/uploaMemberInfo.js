@@ -1,12 +1,9 @@
 
 export async function uploadNewMember(userInfo){
-  const data = new FormData();
-  data.append("file", userInfo)
-  data.append("upload_preset", process.env.REACT_APP_NARS_PRESET);
  
-  return fetch(process.env.REACT_APP_NARS_URL, {
+  return fetch('https://login-99bcf-default-rtdb.asia-southeast1.firebasedatabase.app', {
     method: "POST",
-    body: data
+    body: userInfo
   })
   .then( res => res.json())
   .then( data => console.log(data) )

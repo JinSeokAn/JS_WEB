@@ -4,7 +4,7 @@ import FormErrorMessage from 'components/commonErrorForm/FormErrorMessage';
 
 import styles from './Login.module.scss'
 
-const LoginInput = ({ type, label, htmlFor, register, errorMessage, onChange }) => {
+const LoginInput = ({ type, label, htmlFor, register, errorMessage }) => {
   return (
     <div className="">
       <div className="">
@@ -15,9 +15,8 @@ const LoginInput = ({ type, label, htmlFor, register, errorMessage, onChange }) 
             {...register}
             id={htmlFor}
             type={type}
-            placeholder={type === 'password' ? '비밀번호를 입력해주세요.' : '아이디를 입력해주세요.'}
+            placeholder={type === 'password' ? '비밀번호' : '아이디'}
             className={styles.textform}
-            onChange={onChange}
           />
         
         {errorMessage && <FormErrorMessage errorMessage={errorMessage} />}

@@ -20,9 +20,6 @@
           padding: 12px 15px;
           display: block;
           border-bottom: 1px solid #ddd;
-          &:last-child{
-            margin-top: 0;
-          }
         }
         .emailform{
           display: flex;
@@ -38,16 +35,7 @@
           width: 100%;
           font-size: .9rem;
         }
-        .address{
-          input{
-            display: inline-block;
-          }
-          button{
-            display: inline-block;
-            flex-shrink: 0;
-            margin-left: 10px;
-          }
-        }
+      
       }
     }
     .agreeWrap{

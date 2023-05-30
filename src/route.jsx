@@ -4,7 +4,8 @@ import NotFound from 'pages/NotFound';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
 import JoinUs from 'pages/JoinUs';
-
+import ForgotAccount from 'pages/ForgotAccount';
+import PrdOrder from 'pages/PrdOrder';
 
 const router = createBrowserRouter([
   {
@@ -21,8 +22,17 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
+        path: 'forgot-account',
+        element: <ForgotAccount />,
+      },
+      {
         path: 'join-us',
         element: <JoinUs />,
+      },
+     
+      { 
+        path: 'order',
+        element: <PrdOrder />,
       },
     ],
   },
