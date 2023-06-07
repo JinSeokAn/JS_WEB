@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Form.module.scss'
 
 const RadioButton = ({ children, value, name, current, setFormData }) =>{

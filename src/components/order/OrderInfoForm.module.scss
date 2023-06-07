@@ -1,0 +1,25 @@
+.orderUserForm{
+  margin: 0 auto;
+  width: 50%;
+  li{
+    margin-top: 20px;
+    .subject{
+      position: relative;
+      padding-left: 10px;
+      display: block;
+      font-size: .8rem;
+      color: #000;
+      font-weight: bold;
+      &:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 4px;
+        display: block;
+        width: 5px;
+        height: 5px;
+        background-color: #41ba9c;
+      }
+    }
+  }
+}

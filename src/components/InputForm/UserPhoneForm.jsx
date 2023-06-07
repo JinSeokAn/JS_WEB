@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Form.module.scss'
 
-const UserPhoneForm = ({ name, guideTxt, changeText }) => {
+const UserPhoneForm = ({ name, guideTxt }) => {
   // 초기값 세팅 - 전화번호
   const [userPhone, setUserPhone] = useState('');
   // 오류메세지 상태 저장
@@ -33,7 +33,6 @@ const UserPhoneForm = ({ name, guideTxt, changeText }) => {
         placeholder={guideTxt}
         onChange={ e => {
           onChangeUserPhone(e)
-          changeText(e)
         }}
       /> 
       { userPhone.length > 0 && (

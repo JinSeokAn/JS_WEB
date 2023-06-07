@@ -16,8 +16,8 @@ const NavUtils = ({isMo}) => {
       <>
         { !isMo &&
           <>
-          <li><button><FontAwesomeIcon icon={faMagnifyingGlass} /><span className='srOnly'>검색</span></button></li>
-          <li><Link to="/cart"><FontAwesomeIcon icon={faCartShopping} /><span className='srOnly'>장바구니</span></Link></li>
+          <li><button><FontAwesomeIcon icon={faMagnifyingGlass} /><span className='sr-only'>검색</span></button></li>
+          <li><Link to="/cart"><FontAwesomeIcon icon={faCartShopping} /><span className='sr-only'>장바구니</span></Link></li>
           { !contextValue.user[0] && <li><Link to="/login">로그인</Link></li> }
           { contextValue.user[0] && 
             <>
@@ -29,7 +29,7 @@ const NavUtils = ({isMo}) => {
         }
         { isMo &&
           <>
-            <li><button><FontAwesomeIcon icon={faMagnifyingGlass} /><span className='srOnly'>검색</span></button></li>
+            <li><button><FontAwesomeIcon icon={faMagnifyingGlass} /><span className='sr-only'>검색</span></button></li>
             <li><Link to="/cart">장바구니</Link></li>
             <li><Link to="/login">로그인</Link></li>
           </>

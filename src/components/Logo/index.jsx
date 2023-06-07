@@ -12,7 +12,7 @@ const Logo = ({color}) => {
     fontWeight: 'bold'
   }
   return(
-    <Link style={styleObj} to="/">JS <FontAwesomeIcon icon={faStore} /><span className='srOnly'>Shop</span></Link>
+    <Link style={styleObj} to="/">JS <FontAwesomeIcon icon={faStore} /><span className='sr-only'>Shop</span></Link>
   )
 };
 

@@ -52,10 +52,10 @@ const PasswordCheckForm = ({setFormData}) => {
       setPasswordConfirmMessage("똑같은 비밀번호를 입력했습니다.");
       setIsPasswordConfirm(true)
     }
-    setFormData((prevData) => ({
-      ...prevData,
-      passwordConfirm
-    }));
+    // setFormData((prevData) => ({
+    //   ...prevData,
+    //   passwordConfirm
+    // }));
   }
 
   return (

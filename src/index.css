@@ -14,7 +14,8 @@ a {
 button,
 input,
 select,
-textarea {
+textarea,
+fieldset  {
   background-color: transparent;
   border: 0;
 }
@@ -27,9 +28,18 @@ ol {
   padding-left: 0;
   list-style: none;
 }
+table{
+  padding:0;
+  border:0;
+  border-spacing:0px;
+  border-collapse:collapse;
+}
+th, td{
+  padding:0;
+}
 
 /*common*/
-.srOnly{
+.sr-only{
   display: block;
   width: 0;
   height: 0;
@@ -42,4 +52,8 @@ ol {
 }
 .text-error{
   color: red;
+}
+
+.center{
+  text-align: center;
 }

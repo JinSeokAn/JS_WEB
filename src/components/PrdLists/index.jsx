@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import styles from './PrdLists.module.scss'
 
 const PrdLists = ({prdData, images}) => {
-  console.log(prdData);
   return (
     <div className={styles.prdWrap}>
       <ul className={styles.lists}>

@@ -8,7 +8,7 @@ const LoginInput = ({ type, label, htmlFor, register, errorMessage }) => {
   return (
     <div className="">
       <div className="">
-        <label htmlFor={htmlFor} className="srOnly">
+        <label htmlFor={htmlFor} className="sr-only">
           {label}
         </label>
         <input

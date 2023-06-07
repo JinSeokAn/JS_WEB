@@ -4,10 +4,11 @@ import styles from './Form.module.scss'
 const UserSsnForm = ({setFormData}) => {
     // 초기값 세팅 - 비밀번호, 비밀번호확인, 
     const [ ssnData, setSsnData] = useState({
+      ssn : '',
       ssn1: '',
       ssn2: '',
     });
-    const { ssn1, ssn2 } = ssnData;
+    const { ssn, ssn1, ssn2 } = ssnData;
     //오류메세지 상태저장
     const [ssnMessage, setSsnMessage] = useState('');
     // 유효성 검사
@@ -20,12 +21,10 @@ const UserSsnForm = ({setFormData}) => {
  
       if( target.name ) {
         setSsnData((prevData) => ({
-          ...prevData,
-          [target.name]: currentValue
+          ...prevData, [target.name]: currentValue, ssn : fullSsn
         }));
-        
-        let fullSSN = ssnData.ssn1 + ssnData.ssn2
-        if (!numberRegExp.test(fullSSN)) {
+        const fullSsn = ssnData.ssn1 + ssnData.ssn2
+        if (!numberRegExp.test(fullSsn)) {
           setSsnMessage("숫자만 입력해주세요");
           setIsSsn(false)
         } else {
@@ -39,7 +38,9 @@ const UserSsnForm = ({setFormData}) => {
         }));
       }
     }
+
   return (
+    <>
     <div className={styles.ssnArea}>
       <input 
         className={styles.textform} 
@@ -59,10 +60,11 @@ const UserSsnForm = ({setFormData}) => {
         maxLength={7}
         onChange={ e => onChangSsnNumber(e)}
       /> 
-    { ssn1.length > 0 && (
+    </div>
+    { ssn.length > 0 && (
       <p className={ `${styles.warningMsg} ${ isSsn ? styles.success : styles.error }` }>{ssnMessage}</p>
     )}
-  </div>
+    </>
   )
 };
 

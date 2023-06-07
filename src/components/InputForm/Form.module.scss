@@ -48,20 +48,26 @@
   }
 
   //email form
-  .inputEmail{
-    width: 52%;
+  .emailform{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    .inputEmail{
+      width: 52%;
+    }
+    .at{
+      margin: 0 2%;
+      display: inline-block;
+    }
+    .selectEmail{
+      width:40%;
+      padding: 5px 10px;
+      border: 1px solid #ddd !important;
+      border-radius: 5px;
+    }
   }
-  .at{
-    margin: 0 2%;
-    display: inline-block;
-  }
-  .selectEmail{
-    width:40%;
-    padding: 5px 10px;
-    border: 1px solid #ddd !important;
-    border-radius: 5px;
-  }
-
+  
   .chkBoxWrap{
     display: flex;
     .text{

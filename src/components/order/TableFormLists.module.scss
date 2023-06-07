@@ -1,0 +1,135 @@
+tr{
+  td{
+    border-bottom: 1px solid #dfdfdf;
+    padding: 10px 0;
+  }
+  &:last-child{
+    td{
+      border-bottom: none;
+    }
+  }
+  .check{
+    .checkBox{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .prd{
+    .prdLink{
+      display: flex;
+      .thumb{
+        width: 20%;
+        min-width: 100px;
+        max-width: 120px;
+        overflow: hidden;
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .textBox{
+        padding: 0 15px;
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: self-start;
+        .title{
+          font-size: 1rem;
+          font-weight: bold;
+        }
+        .option{
+          span{
+            font-size: .8rem;
+            color: #666;
+            .em{
+              font-weight: bold;
+              color: #000;
+            }
+            .extraCharge{
+              color: #d52121;
+            }
+          }
+        }
+        .btnDefault{
+          border: 1px solid #666;
+        }
+      }
+    }
+  }
+  .price{
+    div{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: right;
+      .before{
+        font-size: .8rem;
+        color: #888;
+        text-decoration:line-through;
+      }
+      .after{
+        font-weight: bold;
+      }
+    }
+  }
+  .count{
+    .countBox{
+      position: relative;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+      overflow: hidden;
+      .editCount{
+        display: flex;
+        input{
+          margin-top: 0;
+          padding: 3px 0;
+          width: 100%;
+          order: 2;
+          text-align: center;
+          border: 1px solid #666;
+        }
+        .up, .down{
+          padding: 3px 0;
+          width: 40px;
+          height: 100%;
+          border: 1px solid #666;
+        }
+        .up{
+          order: 3;
+          &:before{
+            content: '+';
+            color: #333;
+          }
+        }
+        .down{
+          order: 1;
+          &:before{
+            content: '-';
+            color: #333;
+          }
+        }
+      }
+      .btnEdit{
+        margin-top: 1px;
+        border: 1px solid #666;
+      }
+    }
+  }
+  .sum{
+    text-align: center;
+  }
+  .point{
+    text-align: center;
+  }
+  .delivery{
+    p{
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  }
+}
