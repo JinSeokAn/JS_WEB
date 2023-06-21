@@ -5,8 +5,7 @@ import Home from 'pages/Home';
 import Login from 'pages/Login';
 import JoinUs from 'pages/JoinUs';
 import ForgotAccount from 'pages/ForgotAccount';
-import OderTableForm from 'pages/OrderTableForm';
-import OrderSheet from 'pages/OrderSheet';
+import Order from 'pages/Order';
 
 
 const router = createBrowserRouter([
@@ -33,11 +32,7 @@ const router = createBrowserRouter([
       },
       { 
         path: 'order',
-        element: <OderTableForm />,
-      },
-      {
-        path: 'order/:id',
-        element: <OrderSheet />,
+        element: <Order />,
       },
     ],
   },

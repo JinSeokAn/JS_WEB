@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './Form.module.scss'
 
-const UserPhoneForm = ({ name, guideTxt }) => {
+const UserPhoneForm = ({ name, guideTxt, value }) => {
   // 초기값 세팅 - 전화번호
-  const [userPhone, setUserPhone] = useState('');
+  const [userPhone, setUserPhone] = useState(value || '');
   // 오류메세지 상태 저장
   const [phoneMessage, setPhoneMessage] = useState('');
   // 유효성 검사
@@ -15,7 +15,7 @@ const UserPhoneForm = ({ name, guideTxt }) => {
     const phoneRegExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 
     if (!phoneRegExp.test(currentPhone)) {
-      setPhoneMessage("올바른 형식이 아닙니다!");
+      setPhoneMessage("올바른 형식이 아닙니다! ex) 01012345678");
       setIsUserPhone(false)
     } else {
       setPhoneMessage("사용 가능한 번호입니다:-)");
@@ -29,6 +29,7 @@ const UserPhoneForm = ({ name, guideTxt }) => {
         className={styles.textform} 
         id={name}
         name={name}
+        value={userPhone}
         type='text'
         placeholder={guideTxt}
         onChange={ e => {

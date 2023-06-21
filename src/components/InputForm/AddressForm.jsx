@@ -5,7 +5,6 @@ import { useDaumPostcodePopup } from 'react-daum-postcode';
 
 const AddressForm = ({setFormData, address1, address2, zipCode}) => {
   // url
-  const orderPayURL = window.location.pathname === '/order/:id'
 
   // 주소검색 기능
   const open = useDaumPostcodePopup();
@@ -33,12 +32,10 @@ const AddressForm = ({setFormData, address1, address2, zipCode}) => {
   
   const onChangeText = (e) => {
     const currentValue = e.target.value;
-    if(!orderPayURL) {
-      setFormData((prevData) => ({
-        ...prevData,
-        address2: currentValue
-      }));
-    }
+    setFormData((prevData) => ({
+      ...prevData,
+      address2: currentValue
+    }));
   }
   return (
     <div className={styles.address}>
@@ -50,17 +47,15 @@ const AddressForm = ({setFormData, address1, address2, zipCode}) => {
           disabled
           readOnly
         />
-        { !orderPayURL &&
-          <Button 
-            type={'button'} 
-            text={'주소'} 
-            size={'btnM'} 
-            state={'white'} 
-            onClick={ e => {
-              handleOpenPopup(e)
-            }}
-          />
-        }
+        <Button 
+          type={'button'} 
+          text={'주소'} 
+          size={'btnM'} 
+          state={'white'} 
+          onClick={ e => {
+            handleOpenPopup(e)
+          }}
+        />
        
       </div>
       <input 

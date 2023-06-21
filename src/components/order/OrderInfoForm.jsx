@@ -7,7 +7,6 @@ import AddressForm from 'components/InputForm/AddressForm';
 
 const OrderInfoForm = ({setFormData, formData }) => {
   const { memberName, email, phone, address1, address2, zipCode } = formData
-  
   return (
     <form>
       <ul className={styles.orderUserForm}>

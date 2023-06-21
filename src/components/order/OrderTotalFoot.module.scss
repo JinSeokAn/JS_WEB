@@ -1,0 +1,19 @@
+tr.total{
+  height: 45px;
+  border-top: 3px solid #333;
+  border-bottom: 1px solid #333;
+  span{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+  }
+  .totalPrice{
+    span{
+      display: block;
+      padding-right: 20px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: right;
+    }
+  }
+}

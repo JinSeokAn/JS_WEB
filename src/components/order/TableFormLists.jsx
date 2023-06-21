@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './TableFormLists.module.scss'
 import { Link } from 'react-router-dom';
+import OptionList from './OptionList';
 
-const TableFormLists = ({data}) => {
-  const {id, prdName, option, beforePrice, price, imgURL, count} = data
-  const sumPrice = price * count
-  const {option1, option2, option3} = option
-  console.log(option1);
+const TableFormLists = ({item, options, onDecrement, onIncrement, handleOpenPopup, setSumOptionsAndPrice}) => {
+  const {id, prdName, beforePrice, price, imgURL, count} = item
+  const prdTotalPrice = price * count   // 제품 가격만
+  const [ sumTotalWithOptions, setSumTotalWithOptions] = useState(0);   // 옵션 가격만 
 
-
+  useEffect(() => {
+    // 리스트 당 옵션 가격 합친거
+    const opTotalPrice = options.reduce((accumulator, currentOption) => {
+      return accumulator + (currentOption.price * currentOption.count);
+    }, 0);
+    setSumTotalWithOptions(opTotalPrice + prdTotalPrice)
+    setSumOptionsAndPrice(sumTotalWithOptions)
+}, [item])
   return (
     <tr key={id}>
       {/* 체크 */}
       <td className={styles.check}>
         <div className={styles.checkBox}>
           <label htmlFor="chk1">
-            <input type="checkbox" id="chk1" /><span className='sr-only'>선택하기</span>
+            <input type="checkbox" id="chk1" onChange={null} /><span className='sr-only'>선택하기</span>
           </label>
         </div>
       </td>
@@ -27,12 +34,22 @@ const TableFormLists = ({data}) => {
           </span>
           <div className={styles.textBox}>
             <p className={styles.title}>{prdName}</p>
+            {/* 옵션 내용들 */}
             <div className={styles.option}>
-              { option1 && <span>{option1.name} <em className={styles.extraCount}>{option1.count}</em>개 <em className={styles.extraCharge}>{option1.price}원</em></span> }
-              { option2 && <span>{option2.name} <em className={styles.extraCount}>{option2.count}</em>개 <em className={styles.extraCharge}>{option2.price}원</em></span> }
-              { option3 && <span>{option3.name} <em className={styles.extraCount}>{option3.count}</em>개 <em className={styles.extraCharge}>{option3.price}원</em></span> }
+              {
+                options.map( (item, idx) => (
+                  <OptionList 
+                    key={item.name} 
+                    item={item} 
+                    idx={idx} 
+                   />
+                ))
+              }
             </div>
-            <button type='button' className={styles.btnDefault}>옵션변경</button>
+            <button 
+              type='button' className={styles.btnDefault}
+              onClick={handleOpenPopup}
+            >옵션변경</button>
           </div>
         </Link>
       </td>
@@ -48,25 +65,23 @@ const TableFormLists = ({data}) => {
         <div className={styles.countBox}>
           <div className={styles.editCount}> 
             <input type="text" name="amount" value={count} readOnly /><span className='sr-only'>{count}개</span>
-            <button type="button" className={styles.down}><span className='sr-only'>감소</span></button> 
-            <button type="button" className={styles.up}><span className='sr-only'>증가</span></button>
+            <button type="button" className={styles.down} onClick={ e => onDecrement(item)}><span className='sr-only'>감소</span></button> 
+            <button type="button" className={styles.up} onClick={ e => onIncrement(item)}><span className='sr-only'>증가</span></button>
           </div>
-          <button type="button" className={styles.btnEdit}>수정</button>
         </div>
       </td> 
       {/* 합계 */}
       <td className={styles.sum}>
-        <div>{sumPrice}원</div>
+        <div>{sumTotalWithOptions}원</div>
       </td>
       {/* 적립금 */}
       <td className={styles.point}>
-        {sumPrice * 0.005} P
+        {prdTotalPrice * 0.005} P
       </td>
       {/* 배송비 */}
       <td className={styles.delivery}>
         <p className={styles.text}>
-          [기본배송]<br />
-          조건
+          조건부 배송
         </p>
       </td>
     </tr>

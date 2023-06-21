@@ -74,6 +74,7 @@ const AgreeContents = ({setFormData}) => {
           type="checkbox" 
           name="checkAll" 
           id="checkAll" 
+          onChange={null}
           // value={isAllChecked}
           // onChange={ handleCheckAllChange }
          />

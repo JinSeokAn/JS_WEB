@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styles from './Form.module.scss'
 
 const EmailForm = ({setFormData, email = '@'}) => {
-  // url
-  const orderPayURL = window.location.pathname === '/order/:id'
 
   // 초기값 세팅 - 이메일
   const propsEmail = email.split('@'); // props 받아서 메일 구분
@@ -17,16 +15,10 @@ const EmailForm = ({setFormData, email = '@'}) => {
   // 내용이 변경될 때
   const onChangeEmailFront = (e) => {
     const currentValue = e.target.value;
-    if( !orderPayURL ) {
-      setEmailFront(currentValue)
-    }
+    setEmailFront(currentValue)
   }
   const onChangeEmailBack = (e) => {
     const currentValue = e.target.value;
-    if( orderPayURL ) {
-      alert('수정할 수 없습니다.')
-      return
-    }
     setEmailBack(currentValue)
   }
 
@@ -72,7 +64,7 @@ const EmailForm = ({setFormData, email = '@'}) => {
         <option value="gmail.com">gmail.com</option>
         <option value="hanmail.com">hanmail.com</option>
       </select>
-      { !orderPayURL && emailFront.length > 0 && (
+      { emailFront.length > 0 && (
         <p className={ `${styles.warningMsg} ${ isEmail ? styles.success : styles.error }` }>{emailMessage}</p>
       )}
     </div>
