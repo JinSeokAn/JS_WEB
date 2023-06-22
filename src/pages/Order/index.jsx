@@ -11,7 +11,10 @@ import Logo from 'components/Logo';
 import OrderTotalFoot from 'components/order/OrderTotalFoot';
 import SelectOptions from 'components/SelectOptions';
 
-const OderForm = (props) => {
+import {connect} from 'react-redux'
+import { addSubscriber, addView } from 'redux/index';
+
+const OderForm = ( {count, addSubscriber, addView }) => {
   const [formData, setFormData] = useState({
     memberName : "test1",
     phone : "01076885412",
@@ -63,25 +66,28 @@ const OderForm = (props) => {
   }])
 
   const _creditCards = [
-    { id : 'C3', val : 'C3', name: 'KB PAY(국민)' },
-    { id : 'C1', val : 'C1', name: '비씨' },
-    { id : 'C0', val : 'C0', name: '신한' },
-    { id : 'C4', val : 'C4', name: 'NH' },
-    { id : 'C5', val : 'C5', name: '롯데' }, 
-    { id : 'C7', val : 'C7', name: '삼성' }
+    { id : '1', val : 'C3', name: 'KB PAY(국민)' },
+    { id : '2', val : 'C1', name: '비씨' },
+    { id : '3', val : 'C0', name: '신한' },
+    { id : '4', val : 'C4', name: 'NH' },
+    { id : '5', val : 'C5', name: '롯데' }, 
+    { id : '6', val : 'C7', name: '삼성' }
   ]
   const _installment = [
-    { id : 'C3', val : '00', name: '일시불' },
-    { id : 'C3', val : '03', name: '3개월', ect : '무이자' },
-    { id : 'C1', val : '06', name: '6개월', ect : '무이자' },
-    { id : 'C0', val : '09', name: '9개월' },
-    { id : 'C4', val : '12', name: '12개월' },
+    { id : '1', val : '00', name: '일시불' },
+    { id : '2', val : '03', name: '3개월', ect : '무이자' },
+    { id : '3', val : '06', name: '6개월', ect : '무이자' },
+    { id : '4', val : '09', name: '9개월' },
+    { id : '5', val : '12', name: '12개월' },
   ]
 
   const [ totalPrice, setTotalPrice ] = useState(57800)
   const [ point, setPoint ] = useState(0);
   const [ sumOptionsAndPrice, setSumOptionsAndPrice ] = useState([]);
   const [isPopup, setIsPopup] = useState(false);
+
+  const [ number, setNumber] = useState(1)
+
 
   const handleToggle = (e) => {
     const target = e.target
@@ -139,6 +145,9 @@ const OderForm = (props) => {
       <PageTitle title={'주문서'} />
       <div className={styles.container}>
         <div className={styles.orderLists}>
+          {count}
+          <input type="text" value={number} onChange={(e) => setNumber(e.target.value)} />
+      <button onClick={() => addSubscriber(number)}>test</button>
           <fieldset>
             <legend className='sr-only'>주문 폼</legend>
             <div className={styles.tableScrollable}>
@@ -174,7 +183,6 @@ const OderForm = (props) => {
                       key={item.id} item={item} options={item.options}
                       setSumOptionsAndPrice={setSumOptionsAndPrice}
                       sumOptionsAndPrice={sumOptionsAndPrice}
-                      onIncrement={handleIncrement}
                       onDecrement={handleDecrement}
                       handleOpenPopup={openPopup}
                     />
@@ -300,7 +308,7 @@ const OderForm = (props) => {
 
         <div className={styles.btnWrap}>
           <Button type={'button'} text={'취소'} size={'btnL'} state={'cancel'} onClick={handleCancel} />
-          <Button type={'submit'} text={'결제하기'}  size={'btnL'} state={'success'} onClick={handlePay} />
+          <Button type={'submit'} text={'결제하기'} size={'btnL'} state={'success'} onClick={handlePay} />
         </div>
 
 
@@ -310,4 +318,22 @@ const OderForm = (props) => {
   )
 };
 
-export default OderForm;
+const mapStateToProps = ({subscribers, views}) => {
+  return {
+    count : subscribers.count
+  }
+}
+
+//함수형
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     addSubscriber : () => dispatch(addSubscriber())
+//   }
+// }
+
+//object 스타일
+const mapDispatchToProps = {
+  addSubscriber, 
+  addView : (number) => addView(number)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(OderForm);

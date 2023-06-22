@@ -26,6 +26,8 @@
     "react-scripts": "5.0.1",
     "react-uuid": "^2.0.0",
     "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
     "sass": "^1.62.1",
     "swiper": "^9.3.2",
     "web-vitals": "^2.1.0"

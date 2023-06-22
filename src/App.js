@@ -3,6 +3,8 @@ import './App.css';
 import React, { useEffect, useState } from "react";
 import { Outlet } from 'react-router-dom';
 import Footer from 'components/Footer';
+import { Provider } from 'react-redux';
+import store from 'redux/store';
 
 function App() {
   // const [msg, setMsg] = useState([]);
@@ -27,11 +29,13 @@ function App() {
   }, [])
 
   return (
-    <div className="wrap">
-      <Header isMo={isMo} />
-      <Outlet />
-      <Footer />
-    </div>
+    <Provider store={store}>
+      <div className="wrap">
+        <Header isMo={isMo} />
+        <Outlet />
+        <Footer />
+      </div>
+    </Provider>
   );
 }
 
