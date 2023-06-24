@@ -1,6 +1,7 @@
+import { onOrderCreate } from "./onOrderCreate";
 import { updateHeaderToken } from "./updateHeaderToken";
 
-export const loginToken = (loginInfo) => {
+ export const loginToken = (loginInfo) => {
   const raw = JSON.stringify(loginInfo);
   const requestOptions = {
     method: 'POST',
@@ -8,20 +9,17 @@ export const loginToken = (loginInfo) => {
     body: raw,
     redirect: 'follow'
   };
-
-
   fetch('/user/login', updateHeaderToken(requestOptions))
   .then(response => response.text())
   .then(res => {
     localStorage.setItem('accessToken', res);
+    onOrderCreate(requestOptions)
+    window.location.href = '/order';
     // localStorage.setItem('refreshToken', res)
     // localStorage.setItem('expiredTime', res)
     // setToken(res, requestOptions.headers)
   })
   .catch(error => console.log('error', error));
-
-  // fetcher('/user/login', requestOptions)
-  // fetcher('/goods/list', requestOptions)
 }
 
 

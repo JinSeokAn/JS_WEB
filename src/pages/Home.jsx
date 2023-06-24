@@ -6,7 +6,8 @@ import styles from './Home.module.scss'
 import PrdLists from 'components/PrdLists';
 import TabMenus from 'components/TabMenus';
 import SwiperComponent from 'components/SlideBanner';
-import { updateHeaderToken } from 'api/updateHeaderToken';
+import { loginToken } from 'api/loginToken';
+import { onOrderCreate } from 'api/onOrderCreate';
 
 // import test from 'asset/images/banner_01.jpg'
 
@@ -26,27 +27,28 @@ const Home = (props) => {
   ]
 
  
-
-   useEffect(() => {
+  useEffect(() => {
     async function getPrdData(){
-      const requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
-      
-      await fetch("/goods/list?productName", updateHeaderToken(requestOptions))
-        .then(response => response.json())
-        .then(result => {
-          console.log(result);
-          return result
-        })
-        .catch(error => console.log('error', error));
+      return await axios.get('/goods/list?productName')
+       .then(response=> response.data)
+       .then( res => res.content )
+       .catch(error => console.log(error))
      }
-      getPrdData().then( res => setPrdData(res))
-   }, [prdData])
+     
+    getPrdData().then(function(data) {
+      setPrdData(data)
+     });
+  
+   }, [])
 
+   const [ memberId, setMemberId ] = useState('test1');
+   const [ password, setPassword ] = useState('test1111');
+
+   
   return (
     <div className={styles.main}>
+       <button onClick={() => onOrderCreate()} >상품주문버트느트튼</button><br />
+        <button onClick={() => loginToken({memberId, password})} >로그인</button>
       <section className={styles.mainBanner}>
         <SwiperComponent images={bannerImages} /> 
       </section>
