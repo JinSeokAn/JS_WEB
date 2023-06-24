@@ -28,13 +28,13 @@ const Home = (props) => {
  
 
    useEffect(() => {
-    function getPrdData(){
+    async function getPrdData(){
       const requestOptions = {
         method: 'GET',
         redirect: 'follow'
       };
       
-     fetch("/goods/list?productName", updateHeaderToken(requestOptions))
+      await fetch("/goods/list?productName", updateHeaderToken(requestOptions))
         .then(response => response.json())
         .then(result => {
           console.log(result);
@@ -42,8 +42,7 @@ const Home = (props) => {
         })
         .catch(error => console.log('error', error));
      }
-     
-    setPrdData(getPrdData())
+      getPrdData().then( res => setPrdData(res))
    }, [prdData])
 
   return (
