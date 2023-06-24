@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { registerUser } from 'api/registerUser'
 import styles from './JoinUs.module.scss'
 
 import Button from 'components/Button';

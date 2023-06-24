@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { login, logout } from 'api/firebase';
 import { ContextStore } from 'context/store';
-import { checkMemberInfo } from 'api/checkMemberInfo';
+import { loginToken } from 'api/loginToken';
 
 import CheckBox from 'components/InputForm/CheckBox';
 import LoginInput from 'components/login/LoginInput';
@@ -22,7 +22,7 @@ const Login = (props) => {
   } = useForm();
 
   const onValid = (data) => {
-    checkMemberInfo(data)
+    loginToken(data)
   };
   
   const goForgotAccount = () => {
