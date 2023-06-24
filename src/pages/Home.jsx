@@ -6,6 +6,7 @@ import styles from './Home.module.scss'
 import PrdLists from 'components/PrdLists';
 import TabMenus from 'components/TabMenus';
 import SwiperComponent from 'components/SlideBanner';
+import { updateHeaderToken } from 'api/updateHeaderToken';
 
 // import test from 'asset/images/banner_01.jpg'
 
@@ -27,18 +28,23 @@ const Home = (props) => {
  
 
    useEffect(() => {
-    async function getPrdData(){
-      return await axios.get('/goods/list?productName')
-       .then(response=> response.data)
-       .then( res => res.content )
-       .catch(error => console.log(error))
+    function getPrdData(){
+      const requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      };
+      
+     fetch("/goods/list?productName", updateHeaderToken(requestOptions))
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          return result
+        })
+        .catch(error => console.log('error', error));
      }
      
-    getPrdData().then(function(data) {
-      setPrdData(data)
-     });
-  
-   }, [])
+    setPrdData(getPrdData())
+   }, [prdData])
 
   return (
     <div className={styles.main}>
